@@ -17,6 +17,7 @@ describe('API de precios', () => {
     expect(respuesta.body).toEqual({ total: 900 });
   });
 
+  //para verificar si la ruta responde http400
   it('responde HTTP 400 ante un descuento inválido', async () => {
     const respuesta = await request(app)
       .post('/api/precios/calcular')
