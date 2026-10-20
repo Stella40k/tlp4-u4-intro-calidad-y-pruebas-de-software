@@ -7,3 +7,36 @@
 
 - Salen errores a proposito para enseñarnos como el test detecta defectos o errores antes de modificar el codigo.
 - Sale un error intencional rehazando el descuento superior a 100% pero el codigo no lo rechaza (primer error antes de modificar codigo)
+
+**Observá que la función se escribe dentro de `() => ...` para que Vitest pueda ejecutarla y comprobar si lanza un error. Es distinto de pasar directamente el resultado de la función a `expect`.**
+
+**1. ¿Qué total devuelve actualmente un descuento del 150 % sobre $1.000?**
+- Devuelve un error: "RangeError" o error de rango porque no se lo programo para rechazar descientos mayores a %100. Y el total que devuelve es -500
+
+**2. ¿Por qué ese resultado no cumple la regla de negocio?**
+- Porque la regla de negocios dice que no se pueden aplicar descuentos <100% o 0> y el resultado da un valor negativo
+
+**3. ¿Por qué la prueba falla si la función terminó de ejecutarse?**
+- La prueba falla porque esperaba que la funcion se interrumpiera lanzando un error (RangeError) al recibir un descuento invalido. En lugar de eso, la funcion se ejecuto hasta el final y devolvio un resultado numerico (-500) por ende hay que aplicar validaciones.
+
+**¿La validación actual lo rechaza?**
+
+- si, lanza un error de rango(RangeError)
+
+**Explicá por qué esta comprobación es de **integración** y no solamente una prueba unitaria.**
+
+- Prueba unitaria: prueba solo una fun o modulo de forma aislada (como si llamaramos directamente a las funciiones pero sin el servidor http)
+
+- Prueba de integracion: veridica o controla uno o mas modulos juntos. Verifica multiples capas y componentes del sistemana, si colaboran y que interactuen correctamente entre si
+
+- Siguiendo esto, esta prueba es de integracion porque verifican como se comportan: express, los middlewares, los controladores y el servicio y el manejo de errores. Los prueba en conjunto y no aislada.
+
+**¿por qué conviene utilizar tanto `typecheck` como `npm test`?**
+
+- Conviene usar los dos porqur son herramientas complementarias que atrapan distinros errores:
+
+    **typecheck:** detecta errores de tipos estaticos y estructura del codigo (errores antes de que el codigo se ejecute). Analisiz estaticos sin ejecutar codigo asegurando los tipos de datos y propiedades sean correctas en la app
+
+    **npm test:** detecta errores en tiempo de ejecucion, como bugs en la logica del negocio, manejo de errores, etc. Verifica de forma dinamica ejecutando el codigo y comprobando la log de negocio, validaciones y respuestas htpp
+
+Ninguno reemplaza, ts no detecra fallas en las reglas de negocio y los test unitarios no revisan la coheremcia de tiops 
