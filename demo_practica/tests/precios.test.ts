@@ -1,3 +1,5 @@
+//archivo que define el comportamiento esperado de las func con ppruebas unitarias con la libreria de Vitest
+
 import { describe, expect, it } from 'vitest';
 import { calcularPrecioFinal } from '../src/services/precios.ts';
 
@@ -12,5 +14,6 @@ describe('calcularPrecioFinal', () => {
 
   it('rechaza descuentos superiores al 100 %', () => {
     expect(() => calcularPrecioFinal(1000, 150)).toThrow(RangeError);
+    //al pasar un descuento mayor a 100% la func lanza un error
   });
 });
