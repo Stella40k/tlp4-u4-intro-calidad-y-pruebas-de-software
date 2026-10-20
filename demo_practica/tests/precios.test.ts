@@ -13,7 +13,10 @@ describe('calcularPrecioFinal', () => {
   });
 
   it('rechaza descuentos superiores al 100 %', () => {
-    expect(() => calcularPrecioFinal(1000, 150)).toThrow(RangeError);
+    expect(() => calcularPrecioFinal(1000, 150)).toThrow(RangeError); //esta prueba solo se considera aprobada si es q falla
     //al pasar un descuento mayor a 100% la func lanza un error
   });
 });
+
+//exige q si pasa el monto definido de 100 porciento lance un error, en la prueba le adjunta
+//150 y por eso lanza el error inicial
