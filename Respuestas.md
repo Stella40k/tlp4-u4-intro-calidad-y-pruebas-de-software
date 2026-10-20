@@ -40,3 +40,21 @@
     **npm test:** detecta errores en tiempo de ejecucion, como bugs en la logica del negocio, manejo de errores, etc. Verifica de forma dinamica ejecutando el codigo y comprobando la log de negocio, validaciones y respuestas htpp
 
 Ninguno reemplaza, ts no detecra fallas en las reglas de negocio y los test unitarios no revisan la coheremcia de tiops 
+
+**Preguntas de cierre**
+
+1. ¿Qué diferencia hay entre comprobar manualmente una respuesta y ejecutar una prueba automatizada?
+- La comprovacion manual es lenta y propensa a tener fallos y muy molesto de repetir continuamente. La prueba automatizada se ejecuta rapido (en milisegundos), es reproducible, compara resultados con los esperados y se pueden ejecutar con cada commit mediante CI
+
+2. ¿Cuál fue la causa de la primera prueba fallida?
+-  'calcularPrecioFinal' no tenia validaciones, seguia devolviendo aunque no aplicaba o no tenia logica en vez de tirar la expecion 
+
+3. ¿Por qué es útil incluir casos inválidos además de los casos habituales?
+- Para asegurar el software frente a tador errados. Aseguramos que el sistema responda segun lo esperado, sin datos incosistentes o huecos donde puedan producirse errores o fallos de logica
+
+4. ¿Qué parte del sistema comprueba `tests/precios.test.ts` y qué partes comprueba `tests/api.test.ts`?
+- **tests/precios.test.ts:** comprueba de forma unitaria lam logica (la funcion y las validaciones)
+- **tests/api.test.ts:** comprueba de formas intefradaas las chttp, las rutas y codigos de estado con el manejo de errores
+
+5. ¿Qué ventajas ofrece ejecutar las pruebas después de cada modificación?
+- detectan errores inmediatamente, ayudan a mantener la calidad del codigo, facilitan refactorizacion, son automaticas y rapidas y ayudan a entender el comportamiento del codigo
